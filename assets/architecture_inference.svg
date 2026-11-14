@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="640" viewBox="0 0 760 640" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .t{font-size:15px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+      .s{font-size:12.5px;text-anchor:middle;dominant-baseline:central}
+      .l{stroke:#5F5E5A;stroke-width:1.3;fill:none}
+      .gray rect{fill:#F1EFE8;stroke:#888780} .gray .t{fill:#2C2C2A} .gray .s{fill:#5F5E5A}
+      .teal rect{fill:#E1F5EE;stroke:#0F6E56} .teal .t{fill:#085041} .teal .s{fill:#0F6E56}
+      .purple rect{fill:#EEEDFE;stroke:#534AB7} .purple .t{fill:#3C3489} .purple .s{fill:#534AB7}
+    </style>
+  </defs>
+  <rect width="760" height="640" fill="#FFFFFF"/>
+  <text x="380" y="20" class="s" fill="#5F5E5A">Inference (inference_script.py, client.py): LoRA merged into the backbone, projection head removed</text>
+
+  <g class="gray"><rect x="270" y="36" width="220" height="56" rx="8"/><text x="380" y="54" class="t">Test image</text><text x="380" y="74" class="s">resize 224, ImageNet normalise</text></g>
+  <path class="l" d="M380 92 V110 H130 V126" marker-end="url(#a)"/><path class="l" d="M380 110 V126" marker-end="url(#a)"/><path class="l" d="M380 110 H630 V126" marker-end="url(#a)"/>
+
+  <g class="teal"><rect x="20" y="128" width="220" height="56" rx="8"/><text x="130" y="146" class="t">EfficientNet-B4</text><text x="130" y="166" class="s">backbone, LoRA merged</text></g>
+  <g class="teal"><rect x="270" y="128" width="220" height="56" rx="8"/><text x="380" y="146" class="t">ConvNeXt-Tiny</text><text x="380" y="166" class="s">backbone, LoRA merged</text></g>
+  <g class="teal"><rect x="520" y="128" width="220" height="56" rx="8"/><text x="630" y="146" class="t">Swin-Tiny</text><text x="630" y="166" class="s">backbone, LoRA merged</text></g>
+  <path class="l" d="M130 184 V210" marker-end="url(#a)"/><path class="l" d="M380 184 V210" marker-end="url(#a)"/><path class="l" d="M630 184 V210" marker-end="url(#a)"/>
+
+  <g class="gray"><rect x="20" y="212" width="220" height="50" rx="8"/><text x="130" y="228" class="t">Pooled features h</text><text x="130" y="247" class="s">1792-d</text></g>
+  <g class="gray"><rect x="270" y="212" width="220" height="50" rx="8"/><text x="380" y="228" class="t">Pooled features h</text><text x="380" y="247" class="s">768-d</text></g>
+  <g class="gray"><rect x="520" y="212" width="220" height="50" rx="8"/><text x="630" y="228" class="t">Pooled features h</text><text x="630" y="247" class="s">768-d</text></g>
+  <path class="l" d="M130 262 V288" marker-end="url(#a)"/><path class="l" d="M380 262 V288" marker-end="url(#a)"/><path class="l" d="M630 262 V288" marker-end="url(#a)"/>
+
+  <g class="teal"><rect x="20" y="290" width="220" height="56" rx="8"/><text x="130" y="308" class="t">MLP classifier</text><text x="130" y="328" class="s">Dropout → Linear(1792, 1)</text></g>
+  <g class="teal"><rect x="270" y="290" width="220" height="56" rx="8"/><text x="380" y="308" class="t">MLP classifier</text><text x="380" y="328" class="s">Dropout → Linear(768, 1)</text></g>
+  <g class="teal"><rect x="520" y="290" width="220" height="56" rx="8"/><text x="630" y="308" class="t">MLP classifier</text><text x="630" y="328" class="s">Dropout → Linear(768, 1)</text></g>
+  <path class="l" d="M130 346 V372" marker-end="url(#a)"/><path class="l" d="M380 346 V372" marker-end="url(#a)"/><path class="l" d="M630 346 V372" marker-end="url(#a)"/>
+
+  <g class="gray"><rect x="20" y="374" width="220" height="50" rx="8"/><text x="130" y="390" class="t">sigmoid → P(fake)</text><text x="130" y="409" class="s">val AUC 0.8966</text></g>
+  <g class="gray"><rect x="270" y="374" width="220" height="50" rx="8"/><text x="380" y="390" class="t">sigmoid → P(fake)</text><text x="380" y="409" class="s">val AUC 0.9026</text></g>
+  <g class="gray"><rect x="520" y="374" width="220" height="50" rx="8"/><text x="630" y="390" class="t">sigmoid → P(fake)</text><text x="630" y="409" class="s">val AUC 0.9043</text></g>
+  <path class="l" d="M130 424 V446 H380 V470" marker-end="url(#a)"/><path class="l" d="M380 424 V470" marker-end="url(#a)"/><path class="l" d="M630 424 V446 H380"/>
+
+  <g class="purple"><rect x="250" y="472" width="260" height="56" rx="8"/><text x="380" y="490" class="t">Average of the 3 P(fake)</text><text x="380" y="510" class="s">ensemble val AUC 0.9090</text></g>
+  <path class="l" d="M380 528 V560" marker-end="url(#a)"/>
+
+  <g class="gray"><rect x="250" y="562" width="260" height="56" rx="8"/><text x="380" y="580" class="t">predictions.csv</text><text x="380" y="600" class="s">confidence = P(fake), label = P ≥ 0.5</text></g>
+</svg>

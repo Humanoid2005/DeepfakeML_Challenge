@@ -1,0 +1,12 @@
+# Python 3.10
+torch>=2.0
+torchvision>=0.15
+numpy
+pandas
+pillow
+scikit-learn
+tqdm
+peft
+# client.py (Streamlit demo) only
+streamlit
+matplotlib
